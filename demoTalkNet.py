@@ -20,7 +20,9 @@ warnings.filterwarnings("ignore")
 parser = argparse.ArgumentParser(description = "TalkNet Demo or Columnbia ASD Evaluation")
 
 parser.add_argument('--videoName',             type=str, default="001",   help='Demo video name')
-parser.add_argument('--videoFolder',           type=str, default="demo",  help='Path for inputs, tmps and outputs')
+parser.add_argument('--videoFolder',           type=str, default="demo",  help='Path for inputs, tmps and out')
+parser.add_argument('--videoFolderAbs',		   type=str, default=None, help='(Optional) Absolute path for video folder')
+parser.add_argument('--videoFolderOutput',     type=str, default=None,  help='(Optional) Path for outputs')
 parser.add_argument('--pretrainModel',         type=str, default="pretrain_TalkSet.model",   help='Path for the pretrained TalkNet model')
 
 parser.add_argument('--nDataLoaderThread',     type=int,   default=10,   help='Number of workers')
@@ -70,8 +72,10 @@ if args.evalCol == True:
 		subprocess.call(cmd, shell=True, stdout=None)
 		os.remove(args.videoFolder + '/col_labels.tar.gz')	
 else:
+	print(f"video folder {os.path.join(args.videoFolder, args.videoName)}")
 	args.videoPath = glob.glob(os.path.join(args.videoFolder, args.videoName + '.*'))[0]
-	args.savePath = os.path.join(args.videoFolder, args.videoName)
+	args.savePath = os.path.join(args.videoFolderOutput, args.videoName)
+
 
 
 def generate_speaker_activity_json(tracks, scores, threshold, output_path):
