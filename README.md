@@ -20,7 +20,7 @@ You can follow the **exact same installation and inference steps as the original
 
 ### ✅ Steps:
 
-1. **Clone TalkNet and SyncNet** as described in the original [TalkNet-ASD repository](https://github.com/TaoRuijie/TalkNet-ASD).
+1. **Clone TalkNet** as described in the original [TalkNet-ASD repository](https://github.com/TaoRuijie/TalkNet-ASD).
 2. **Replace** their original `demoTalkNet.py` script with the one provided here (in this repository).
 3. **Run inference** as usual:
    python demoTalkNet.py --video input_video.mp4
